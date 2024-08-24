@@ -1,0 +1,331 @@
+{
+  "log": {
+    "level": "warn",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "udp://1.1.1.1",
+        "address_resolver": "dns-direct"
+      },
+      {
+        "tag": "dns-trick-direct",
+        "address": "https://sky.rethinkdns.com/",
+        "detour": "direct-fragment"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "1.1.1.1",
+        "address_resolver": "dns-local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "smartvipeasymt.hphell.ir",
+          "www.speedtest.net"
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "domain": "connectivitycheck.gstatic.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
+      },
+      {
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
+        "server": "dns-direct"
+      },
+      {
+        "domain_suffix": ".ir",
+        "server": "dns-direct"
+      }
+    ],
+    "final": "dns-remote",
+    "static_ips": {
+      "sky.rethinkdns.com": [
+        "104.17.147.22",
+        "104.17.148.22",
+        "188.114.97.3",
+        "188.114.96.3"
+      ]
+    },
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 12334,
+      "sniff": true,
+      "sniff_override_destination": true,
+      "set_system_proxy": true
+    },
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 16450
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "@Hiddify_Nexttt تلگرام   § 0",
+        "@Hiddify_Nexttt تلگرام   § 1",
+        "@Hiddify_Nexttt تلگرام تلگرام  § 2",
+        "@Hiddify_Nexttt تلگرام   § 3",
+        "@Hiddify_Nexttt تلگرام تلگرام   § 4",
+        "@Hiddify_Nexttt تلگرام تلگرام   § 5",
+        "@Hiddify_Nexttt تلگرام تلگرام   § 6",
+        "@Hiddify_Nexttt تلگرام تلگرام§ 7"
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "@Hiddify_Nexttt تلگرام   § 0",
+        "@Hiddify_Nexttt تلگرام   § 1",
+        "@Hiddify_Nexttt تلگرام تلگرام  § 2",
+        "@Hiddify_Nexttt تلگرام   § 3",
+        "@Hiddify_Nexttt تلگرام تلگرام   § 4",
+        "@Hiddify_Nexttt تلگرام تلگرام   § 5",
+        "@Hiddify_Nexttt تلگرام تلگرام   § 6",
+        "@Hiddify_Nexttt تلگرام تلگرام§ 7"
+      ],
+      "url": "http://connectivitycheck.gstatic.com/generate_204",
+      "interval": "10m0s",
+      "tolerance": 1,
+      "idle_timeout": "30m0s"
+    },
+    {
+      "type": "vless",
+      "tag": "@Hiddify_Nexttt تلگرام   § 0",
+      "server": "smartvipeasymt.hphell.ir",
+      "server_port": 12345,
+      "uuid": "c6c8cf12-eb81-4044-88c7-d398614e0cd2",
+      "transport": {
+        "type": "http",
+        "host": "uplod.ir",
+        "path": "/",
+        "method": "GET"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Hiddify_Nexttt تلگرام   § 1",
+      "server": "www.speedtest.net",
+      "server_port": 2095,
+      "uuid": "telegram-id-ArV2ray",
+      "transport": {
+        "type": "ws",
+        "path": "/telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry",
+        "headers": {
+          "Host": "6.www.speedtest.net.H.bahrane.iR."
+        },
+        "max_early_data": 2095,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Hiddify_Nexttt تلگرام تلگرام  § 2",
+      "server": "www.speedtest.net",
+      "server_port": 8080,
+      "uuid": "telegram-id-PcV2ray",
+      "transport": {
+        "type": "ws",
+        "path": "/-PcV2ry--PcV2ry-TEL--PcV2ry-TEL--PcV2ry-TEL--PcV2ry",
+        "headers": {
+          "Host": "1.V2.k.www.speedtest.net.mehpow.iR."
+        },
+        "max_early_data": 8080,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Hiddify_Nexttt تلگرام   § 3",
+      "server": "www.speedtest.net",
+      "server_port": 2095,
+      "uuid": "telegram-id-ArV2ray",
+      "transport": {
+        "type": "ws",
+        "path": "/telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry,telegram-ArV2ry",
+        "headers": {
+          "Host": "6.www.speedtest.net.H.bahrane.iR."
+        },
+        "max_early_data": 2095,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Hiddify_Nexttt تلگرام تلگرام   § 4",
+      "server": "185.146.173.58",
+      "server_port": 8080,
+      "uuid": "21ad051e-85a3-4446-8308-a9551bbaaf97",
+      "transport": {
+        "type": "ws",
+        "path": "/servernett",
+        "headers": {
+          "Host": "lc11.lebasnoo.ir."
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Hiddify_Nexttt تلگرام تلگرام   § 5",
+      "server": "185.146.173.58",
+      "server_port": 8080,
+      "uuid": "e93cf2d8-c56f-420e-b97b-5232bab743ec",
+      "transport": {
+        "type": "ws",
+        "path": "/servernett",
+        "headers": {
+          "Host": "lc10.lebasnoo.ir."
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Hiddify_Nexttt تلگرام تلگرام   § 6",
+      "server": "2a01:4f8:c012:9907::1",
+      "server_port": 44929,
+      "uuid": "TELEGRAM-ServerNett",
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "@Hiddify_Nexttt تلگرام تلگرام§ 7",
+      "server": "www.speedtest.net",
+      "server_port": 8880,
+      "uuid": "677e657b-aced-41e1-8a5e-44f0cd244270",
+      "transport": {
+        "type": "ws",
+        "path": "/-LiV2ry@LIGHTNING6-TEL--@LIGHTNING6-TEL--@LIGHTNING6-TEL--@LIGHTNING6-JOIN-@LIGHTNING6-TEL--@LIGHTNING6-JOIN-@LIGHTNING6-TEL-@LIGHTNING6-TEL--@LIGHTNING6-JOIN-@LIGHTNING6-TEL--@LIGHTNING6",
+        "headers": {
+          "Host": "www.speedtest.net.A.lightning-6.LiVE."
+        },
+        "max_early_data": 2056,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "direct",
+      "tag": "direct-fragment",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "2-8"
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "bypass"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "domain": ".ir",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "clash_mode": "Direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "Global",
+        "outbound": "select"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geoip-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geoip-ir.srs",
+        "update_interval": "120h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geosite-ir.srs",
+        "update_interval": "120h0m0s"
+      }
+    ],
+    "final": "select",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "clash.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:16756",
+      "secret": "8X_zuFxTe6ZKZG9b"
+    }
+  }
+}
